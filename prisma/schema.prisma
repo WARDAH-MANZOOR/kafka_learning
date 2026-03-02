@@ -1,0 +1,30 @@
+datasource db {
+  provider = "postgresql" // Assuming PostgreSQL
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["typedSql"]
+  
+}
+
+
+model Merchant {
+  merchant_id  Int          @id @default(autoincrement())
+  full_name    String
+  email        String       @unique
+  createdAt    DateTime     @default(now())
+
+  transactions Transaction[]
+}
+
+model Transaction {
+  transaction_id String   @id @default(uuid())
+  merchant_id    Int
+  amount         Decimal
+  status         String
+  createdAt      DateTime @default(now())
+
+  merchant       Merchant @relation(fields: [merchant_id], references: [merchant_id])
+}
