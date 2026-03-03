@@ -1,6 +1,6 @@
 import express from "express";
-import { producePayment } from "./producer";
-import { startConsumer } from "./consumer";
+import { producePayment } from "./producer.js";
+import { startConsumer } from "./consumer.js";
 
 const app = express();
 app.use(express.json());
