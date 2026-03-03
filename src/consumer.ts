@@ -20,8 +20,8 @@ export const startConsumer = async () => {
       // DB me save
       await prisma.transaction.create({
         data: {
-          merchant_id: merchantId,
-          amount,
+          merchant_id: Number(merchantId),
+          amount: Number(amount),
           status
         }
       });
